@@ -5,34 +5,35 @@ import TextInput from "../component/TextInput";
 import CustomButton from "../component/CustomButton";
 import TextButton from "../component/TextButton";
 
-export default class AuthScreen extends Component {
-  static navigatorStyle = {
-    navBarHidden: true
-  };
-
+export default class RegisterScreen extends Component {
   state = {
+    email: "",
     username: "",
     password: ""
   };
+
+  onChangeEmail = email => this.setState({ email });
 
   onChangeUsername = username => this.setState({ username });
 
   onChangePassword = password => this.setState({ password });
 
-  goToRegister = () =>
-    this.props.navigator.push({
-      screen: "client.RegisterScreen",
-      title: "ثبت نام",
+  popToRoot = () =>
+    this.props.navigator.popToRoot({
+      animated: true,
+      animationType: "fade"
     });
 
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.img}
-          source={require("../../assets/images/logo.png")}
-        />
         <View>
+          <TextInput
+            onChangeText={this.onChangeUsername}
+            value={this.state.username}
+            on
+            placeholder="ایمیل"
+          />
           <TextInput
             onChangeText={this.onChangeUsername}
             value={this.state.username}
@@ -47,7 +48,7 @@ export default class AuthScreen extends Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <CustomButton title="ورود" />
+          <CustomButton title="ثبت نام" />
         </View>
         <View
           style={{
@@ -57,7 +58,7 @@ export default class AuthScreen extends Component {
             padding: 20
           }}
         >
-          <TextButton title="ثبت نام" onPress={this.goToRegister} />
+          <TextButton onPress={this.popToRoot} title="قبلا ثبت نام کردم!" />
         </View>
       </View>
     );
