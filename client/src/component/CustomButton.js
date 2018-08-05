@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: height * 0.08,
     borderRadius: 30,
-    backgroundColor: "rgb(255,82,76)",
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "rgb(132, 189, 0)",
+    alignItems: "center",
+    justifyContent: "center"
   },
   text: {
     color: "white",
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: "bold"
   }
 });

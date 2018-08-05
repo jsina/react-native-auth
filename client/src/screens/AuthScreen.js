@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   img: {
-    marginVertical: "5%"
+    marginVertical: "5%",
+    width: 100,
+    height: 100,
   }
 });
