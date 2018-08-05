@@ -14,7 +14,6 @@ router.get("/private", (req, res) => {
     });
   }
   jwt.verify(token, process.env.TOKEN_SEC, (err, decoded) => {
-    console.log(decoded, " dedo");
     if (err) {
       return res.status(500).send({
         auth: false,
@@ -22,7 +21,6 @@ router.get("/private", (req, res) => {
       });
     }
     User.findById(decoded._id, { password: 0 }, (err, user) => {
-      console.log(user);
       if (err) {
         return res.status(500).send("There is a problem to find a user.");
       }

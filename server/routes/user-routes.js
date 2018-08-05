@@ -46,11 +46,11 @@ router.post("/login", (req, resp) => {
         let token = jwt.sign({ _id: user.id }, process.env.TOKEN_SEC, {
           expiresIn: "365 days"
         });
-        return resp.status(201).send({ token });
+        resp.set("x-access-token", token)
+        return resp.status(201).send();
       });
     })
     .catch(err => {
-      x;
       if (!err) {
         return resp.status(401).send();
       }
