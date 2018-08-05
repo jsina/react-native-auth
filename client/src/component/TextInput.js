@@ -1,17 +1,22 @@
 import React from "react";
-import { StyleSheet, TextInput as Input } from "react-native";
+import { StyleSheet, TextInput as Input, Dimensions } from "react-native";
 
-export default TextInput = props => <Input underlineColorAndroid='transparent' style={styles.input} {...props} />;
+const { width, height } = Dimensions.get("screen");
+
+export default (TextInput = props => (
+  <Input underlineColorAndroid="transparent" style={styles.input} {...props} />
+));
 
 const styles = StyleSheet.create({
   input: {
-    width: "90%",
-    height: "8%",
+    width: width * 0.9,
+    height: height * 0.08,
     backgroundColor: "rgb(242,242,242)",
     color: "rgb(188,188,188)",
     borderRadius: 30,
     textAlign: "right",
-    paddingRight: '3%',
-    marginBottom: '1%'
+    paddingRight: "3%",
+    fontSize: 18,
+    marginVertical: "2%"
   }
 });
