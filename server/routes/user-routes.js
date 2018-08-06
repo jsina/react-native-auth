@@ -41,12 +41,14 @@ router.post("/login", (req, resp) => {
       }
       bcrypt.compare(password, user.password).then(match => {
         if (!match) {
-          return resp.status(401).send('Wrong user or pass!');
+          return resp.status(401).send("Wrong user or pass!");
         }
         let token = jwt.sign({ _id: user.id }, process.env.TOKEN_SEC, {
           expiresIn: "365 days"
         });
-        resp.set("x-access-token", token)
+        // add token to the header
+        resp.set("x-access-token", token);
+
         return resp.status(201).send();
       });
     })
