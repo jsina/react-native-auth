@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { StyleSheet, Image, View } from "react-native";
+import axios from "axios";
 
 import TextInput from "../component/TextInput";
 import CustomButton from "../component/CustomButton";
 import TextButton from "../component/TextButton";
+import { emailValidator } from "../utils/validator";
 
 export default class RegisterScreen extends Component {
   state = {
@@ -24,13 +26,38 @@ export default class RegisterScreen extends Component {
       animationType: "fade"
     });
 
+  register = () => {
+    const { username, password, email } = this.state;
+    if (emailValidator(email) && username.trim() && password.trim()) {
+      axios
+        .post("http://localhost:3000/user/register", {
+          username: username,
+          password: password,
+          email: email
+        })
+        .then(response => {
+          if (response.status == 201) {
+            this.popToRoot();
+          } else {
+            alert(':((')
+          }
+        })
+        .catch(err => {
+          alert(err);
+        });
+    } else {
+      alert("something wrong");
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <View>
           <TextInput
-            onChangeText={this.onChangeUsername}
-            value={this.state.username}
+            keyboardType="email-address"
+            onChangeText={this.onChangeEmail}
+            value={this.state.email}
             on
             placeholder="ایمیل"
           />
@@ -48,7 +75,7 @@ export default class RegisterScreen extends Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <CustomButton title="ثبت نام" />
+          <CustomButton onPress={this.register} title="ثبت نام" />
         </View>
         <View
           style={{

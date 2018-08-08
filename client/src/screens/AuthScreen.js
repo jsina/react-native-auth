@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, AsyncStorage } from "react-native";
+import axios from "axios";
 
 import TextInput from "../component/TextInput";
 import CustomButton from "../component/CustomButton";
 import TextButton from "../component/TextButton";
+import startPrivateScreen from "../component/StartPrivateScreen";
 
 export default class AuthScreen extends Component {
   static navigatorStyle = {
@@ -22,8 +24,28 @@ export default class AuthScreen extends Component {
   goToRegister = () =>
     this.props.navigator.push({
       screen: "client.RegisterScreen",
-      title: "ثبت نام",
+      title: "ثبت نام"
     });
+
+  saveAsync = async (token) => await AsyncStorage.setItem('token', token);
+
+  login = () => {
+    const { username, password } = this.state;
+    if (username && password) {
+      axios
+        .post("http://localhost:3000/user/login", {
+          username,
+          password
+        })
+        .then(response => {
+          this.saveAsync(response.headers['x-access-token']);
+          startPrivateScreen();
+        })
+        .catch(err => alert(err));
+    } else {
+      alert("fill the inputs.");
+    }
+  };
 
   render() {
     return (
@@ -47,7 +69,7 @@ export default class AuthScreen extends Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <CustomButton title="ورود" />
+          <CustomButton title="ورود" onPress={this.login} />
         </View>
         <View
           style={{
@@ -79,6 +101,6 @@ const styles = StyleSheet.create({
   img: {
     marginVertical: "5%",
     width: 100,
-    height: 100,
+    height: 100
   }
 });

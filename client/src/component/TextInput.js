@@ -4,7 +4,7 @@ import { StyleSheet, TextInput as Input, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("screen");
 
 export default (TextInput = props => (
-  <Input underlineColorAndroid="transparent" style={styles.input} {...props} />
+  <Input autoCapitalize='none' underlineColorAndroid="transparent" style={styles.input} {...props} />
 ));
 
 const styles = StyleSheet.create({

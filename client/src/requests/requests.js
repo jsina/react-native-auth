@@ -1,16 +1,16 @@
 const axios = require("axios");
 
-// axios.post('http://localhost:3000/user/register', {
-//     username: 'sinofmaleki',
-//     password: 'Fliddntstone',
-//     email: 'sinofmaleki@fmlk.com'
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
+axios.post('http://localhost:3000/user/register', {
+    username: 'sinofmaleki',
+    password: 'Fliddntstone',
+    email: 'sinofmaleki@fmlk.com'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 // axios
 //   .post("http://localhost:3000/user/login", {
