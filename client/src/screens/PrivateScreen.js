@@ -1,17 +1,35 @@
 import React, { Component } from "react";
-import { View, Text, AsyncStorage } from "react-native";
+import { View, Text, StyleSheet, AsyncStorage } from "react-native";
+import axios from 'axios';
 
-class PrivateScreen extends Component {
-  componentDidMount() {
-    AsyncStorage.getItem("token").then(item => console.log(item, " item"));
+import CustomButton from "../component/CustomButton";
+import { startAuthScreen } from '../component/StartScreen';
+
+export default class PrivateScreen extends Component {
+  logout = () => {
+    
+    AsyncStorage.clear(() => {
+      startAuthScreen();
+    })
   }
+
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Private Screen</Text>
+        <CustomButton onPress={this.logout} customStyle={styles.button} title="خروج" />
       </View>
     );
   }
 }
 
-export default PrivateScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    backgroundColor: "rgb(255, 189, 0)",
+  }
+});

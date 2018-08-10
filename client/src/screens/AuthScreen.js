@@ -5,7 +5,7 @@ import axios from "axios";
 import TextInput from "../component/TextInput";
 import CustomButton from "../component/CustomButton";
 import TextButton from "../component/TextButton";
-import startPrivateScreen from "../component/StartPrivateScreen";
+import { startPrivateScreen } from "../component/StartScreen";
 
 export default class AuthScreen extends Component {
   static navigatorStyle = {
@@ -27,7 +27,14 @@ export default class AuthScreen extends Component {
       title: "ثبت نام"
     });
 
-  saveAsync = async (token) => await AsyncStorage.setItem('token', token);
+  saveAsync = async token => {
+    try {
+      await AsyncStorage.setItem("token", token);
+      startPrivateScreen();
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   login = () => {
     const { username, password } = this.state;
@@ -38,8 +45,12 @@ export default class AuthScreen extends Component {
           password
         })
         .then(response => {
-          this.saveAsync(response.headers['x-access-token']);
-          startPrivateScreen();
+          const token = response.headers["x-access-token"];
+          if (token) {
+            this.saveAsync(token);
+          } else {
+            alert("no token");
+          }
         })
         .catch(err => alert(err));
     } else {

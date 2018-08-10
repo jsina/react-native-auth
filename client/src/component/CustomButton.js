@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, Text, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("screen");
 
 export default (CustomButton = props => (
-  <TouchableOpacity style={styles.button} activeOpacity={0.7} {...props}>
+  <TouchableOpacity style={[styles.button, props.customStyle]} activeOpacity={0.7} {...props}>
     <Text style={styles.text}>{props.title}</Text>
   </TouchableOpacity>
 ));
