@@ -12,6 +12,19 @@ node.js
 [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ---
+## Prerequisite
+crate an account on [mlab](https://mlab.com) for creating free mongo database or you could have mongo locally.
+
+You have to create the `.env` file on the root of `server` project with followd data:
+
+`
+DB_USER=
+DB_PASS=
+DB_HOST=
+TOKEN_SEC=
+`
+
+DB_USER, DB_PASS, DB_HOST is for your database and TOKEN_SEC is for json web token
 
 ## Running
 
