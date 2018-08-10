@@ -4,8 +4,11 @@ Here is the sample project on both fornt-end and back-end to give you some hint 
 
 ## Technology I've been used
 back-end
+
 node.js
+
 [mogoose](http://mongoosejs.com/) as the ORM
+
 [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ---
