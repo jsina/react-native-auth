@@ -15,7 +15,7 @@ node.js
 ## Prerequisite
 create an account on [mlab](https://mlab.com) for creating free mongo database or you could have mongo locally.
 
-You have to create the `.env` file on the root of `server` project with followd data:
+You have to create the `.env` file on the root of `server` project with followed data:
 
 `
 DB_USER=
